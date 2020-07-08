@@ -6,10 +6,10 @@
     <title>Emitir el video a visualizar</title>
     <script src='/socket.io/socket.io.js'></script>
 </head>
-<body>
-    <h1>Emision en directo</h1>
-    <button id='btn'>Emitir</button>
-    <video  src="" id="video" style="width: 800px; height: 600px;" autoplay="true"></video>
+<body style="background-color: black;">
+    <h1 style="color: white;">Emision en directo</h1>
+    <button id='btn'>Emitir</button><br/>
+    <video  src="" id="video" style="width: 800px; height: 600px;" ></video>
     <canvas id='preview'></canvas>
     <div class="status"></div>
 
@@ -30,6 +30,7 @@
         }
         function localCamara(stream){
             video.srcObject = stream;
+            video.onloadedmetadata = (ev)=> video.play();
             publicarmensaje("camara funcionando");
         }
         function errorCamara(){
@@ -44,7 +45,7 @@
             navigator.mozGetUserMedia || navigator.msgGetUserMedia);
             if(navigator.getUserMedia)
             {
-                navigator.getUserMedia({video:true},localCamara,errorCamara)
+                navigator.getUserMedia({video:true,audio:true},localCamara,errorCamara)
             }
             var intervalo = setInterval(()=>{
                 vervideo(video,context);
