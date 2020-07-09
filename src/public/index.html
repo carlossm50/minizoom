@@ -9,7 +9,7 @@
 <body style="background-color: black;">
     <h1 style="color: white;">Emision en directo</h1>
     <button id='btn'>Emitir</button><br/>
-    <video  src="" id="video" style="width: 800px; height: 600px;" ></video>
+    <video  src="" id="video" style="width: 50%; height: 50%;" ></video>
     <canvas id='preview'></canvas>
     <div class="status"></div>
 
@@ -23,6 +23,7 @@
         context.width = canvas.width;
         context.height = canvas.height;
         var video = document.querySelector("#video");
+
         var socket = io();
         
         function publicarmensaje (msg){
@@ -49,7 +50,7 @@
             }
             var intervalo = setInterval(()=>{
                 vervideo(video,context);
-            },500);
+            },300);
         })
     </script>
     
